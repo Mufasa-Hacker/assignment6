@@ -1,0 +1,263 @@
+/* --- General Body Styles --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* --- 1. Navbar --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+nav .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+.user-name {
+    font-weight: 600;
+}
+
+/* --- 2. Hero Section --- */
+.hero-section {
+    display: flex;
+    padding: 4rem 2rem;
+    align-items: center;
+    background-color: #f8f9fa;
+    gap: 2rem;
+}
+.hero-left {
+    flex: 1;
+}
+.hero-left h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+.hero-left p {
+    font-size: 1.1rem;
+    color: #555;
+}
+#book-service-btn {
+    padding: 1rem 2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.hero-right {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-right img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* --- 3. Achievements Section --- */
+.achievements {
+    background-color: #007bff;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+.achievements h2 {
+    margin-bottom: 2rem;
+}
+.achievements-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+.achievements-container div {
+    margin: 1rem;
+}
+.achievements-container strong {
+    font-size: 2rem;
+}
+
+/* --- 4. Booking Services Section --- */
+.booking-services {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+}
+.services-list-left {
+    flex: 1.5;
+}
+.booking-right {
+    flex: 1;
+}
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+.service-item button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.added-items, .booking-form {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.added-items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.added-items th, .added-items td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.total-amount {
+    text-align: right;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+.booking-form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.booking-form button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* --- Other Sections & Footer --- */
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+}
+.footer-logo, .footer-about, .footer-links, .footer-contact, .footer-social {
+    flex: 1;
+    min-width: 200px; /* Ensures columns don't get too squished */
+    margin: 1rem;
+}
+
+/* ================================================= */
+/* --- RESPONSIVE STYLES USING MEDIA QUERIES --- */
+/* ================================================= */
+
+/* For Tablets (screens up to 768px wide) */
+@media (max-width: 768px) {
+    /* Navbar */
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 0.5rem;
+    }
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+        background-color: #f8f9fa;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-left h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Booking Section */
+    .booking-services {
+        flex-direction: column;
+    }
+}
+
+
+/* For Mobile Phones (screens up to 480px wide) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    /* Hero Section */
+    .hero-left h1 {
+        font-size: 2rem;
+    }
+    .hero-left p {
+        font-size: 1rem;
+    }
+
+    /* Achievements */
+    .achievements-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* Service Item Buttons */
+    .service-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    /* Footer */
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-links ul {
+        padding: 0;
+        list-style: none;
+    }
+    
+}
