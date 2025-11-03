@@ -8,6 +8,9 @@ body {
 *, *:before, *:after {
     box-sizing: inherit;
 }
+/* FIX: Hides the "Remove Item" button on page load */
+.service-item .remove-btn {
+    display: none;
 
 /* --- 1. Navbar --- */
 nav {
@@ -182,9 +185,6 @@ footer {
     min-width: 200px; /* Ensures columns don't get too squished */
     margin: 1rem;
 }
-/* FIX: Hides the "Remove Item" button on page load */
-.service-item .remove-btn {
-    display: none;
 
 }
 /* ================================================= */
@@ -263,10 +263,6 @@ footer {
         padding: 0;
         list-style: none;
     }
-    /* FIX: Hides the "Remove Item" button on page load */
-.service-item .remove-btn {
-    display: none;
-
-}
+  
 }
 
