@@ -183,7 +183,10 @@ footer {
     min-width: 200px; /* Ensures columns don't get too squished */
     margin: 1rem;
 }
-
+/* FIX: Hides the "Remove Item" button on page load */
+.service-item .remove-btn {
+    display: none;
+}
 
 
 /* ================================================= */
