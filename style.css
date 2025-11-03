@@ -259,5 +259,9 @@ footer {
         padding: 0;
         list-style: none;
     }
-    
+    /* --- FIX: Hide Remove Button by Default --- */
+.service-item .remove-btn {
+    display: none;
 }
+}
+
