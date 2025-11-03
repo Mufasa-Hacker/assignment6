@@ -56,43 +56,45 @@ document.addEventListener('DOMContentLoaded', function() {
         totalAmountSpan.textContent = total.toFixed(2);
     }
 
-    // --- Event Listeners for Add/Remove Buttons ---
-    // [THIS IS THE MODIFIED SECTION]
-    serviceItemsContainer.addEventListener('click', function(e) {
-        const index = e.target.getAttribute('data-index');
-        if (index === null) return; // Didn't click a button with a data-index
+    // --- Event Listeners for Add/Remove Buttons [UPDATED] ---
+serviceItemsContainer.addEventListener('click', function(e) {
+    const index = e.target.getAttribute('data-index');
+    if (index === null) return; // Didn't click a button
 
-        const selectedService = services[index];
+    const selectedService = services[index];
+    
+    // Find the specific buttons for THIS service item
+    const buttonContainer = e.target.parentElement;
+    const addButton = buttonContainer.querySelector('.add-btn');
+    const removeButton = buttonContainer.querySelector('.remove-btn');
+
+    if (e.target.classList.contains('add-btn')) {
+        // Add to cart
+        cart.push(selectedService);
         
-        // Find the specific buttons for THIS service item
-        const buttonContainer = e.target.parentElement;
-        const addButton = buttonContainer.querySelector('.add-btn');
-        const removeButton = buttonContainer.querySelector('.remove-btn');
+        // --- THIS IS THE FIX ---
+        // Hide "Add Item" button
+        addButton.style.display = 'none';
+        // Show "Remove Item" button
+        removeButton.style.display = 'inline-block'; 
 
-        if (e.target.classList.contains('add-btn')) {
-            // 1. Add to cart
-            cart.push(selectedService);
-            
-            // 2. --- FIX: Toggle buttons ---
-            addButton.style.display = 'none';
-            removeButton.style.display = 'inline-block'; // Use 'inline-block' so it appears on the same line
-
-        } else if (e.target.classList.contains('remove-btn')) {
-            // 1. Remove from cart
-            const cartIndex = cart.findIndex(item => item.name === selectedService.name);
-            if (cartIndex > -1) {
-                cart.splice(cartIndex, 1);
-            }
-            
-            // 2. --- FIX: Toggle buttons ---
-            removeButton.style.display = 'none';
-            addButton.style.display = 'inline-block';
+    } else if (e.target.classList.contains('remove-btn')) {
+        // Remove from cart
+        const cartIndex = cart.findIndex(item => item.name === selectedService.name);
+        if (cartIndex > -1) {
+            cart.splice(cartIndex, 1);
         }
         
-        // 3. Update the cart display
-        renderCart();
-    });
+        // --- THIS IS THE FIX ---
+        // Hide "Remove Item" button
+        removeButton.style.display = 'none';
+        // Show "Add Item" button
+        addButton.style.display = 'inline-block';
+    }
     
+    // Update the cart display
+    renderCart();
+});
     // --- Hero Section Button Scroll ---
     const bookBtn = document.getElementById('book-service-btn');
     const bookingSection = document.getElementById('booking-section');
