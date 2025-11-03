@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cartItemsContainer.innerHTML = '';
         let total = 0;
         if (cart.length === 0) {
-             // Display message for no added items [cite: 82]
+             // Display message for no added items
         } else {
             cart.forEach((item, index) => {
                 const row = document.createElement('tr');
@@ -57,20 +57,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Event Listeners for Add/Remove Buttons ---
+    // [THIS IS THE MODIFIED SECTION]
     serviceItemsContainer.addEventListener('click', function(e) {
         const index = e.target.getAttribute('data-index');
-        if (index === null) return;
+        if (index === null) return; // Didn't click a button with a data-index
 
         const selectedService = services[index];
+        
+        // Find the specific buttons for THIS service item
+        const buttonContainer = e.target.parentElement;
+        const addButton = buttonContainer.querySelector('.add-btn');
+        const removeButton = buttonContainer.querySelector('.remove-btn');
 
         if (e.target.classList.contains('add-btn')) {
+            // 1. Add to cart
             cart.push(selectedService);
+            
+            // 2. --- FIX: Toggle buttons ---
+            addButton.style.display = 'none';
+            removeButton.style.display = 'inline-block'; // Use 'inline-block' so it appears on the same line
+
         } else if (e.target.classList.contains('remove-btn')) {
+            // 1. Remove from cart
             const cartIndex = cart.findIndex(item => item.name === selectedService.name);
             if (cartIndex > -1) {
                 cart.splice(cartIndex, 1);
             }
+            
+            // 2. --- FIX: Toggle buttons ---
+            removeButton.style.display = 'none';
+            addButton.style.display = 'inline-block';
         }
+        
+        // 3. Update the cart display
         renderCart();
     });
     
@@ -78,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const bookBtn = document.getElementById('book-service-btn');
     const bookingSection = document.getElementById('booking-section');
     bookBtn.addEventListener('click', () => {
-        bookingSection.scrollIntoView({ behavior: 'smooth' }); // [cite: 38]
+        bookingSection.scrollIntoView({ behavior: 'smooth' }); //
     });
 
 
@@ -99,11 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
             total_amount: totalAmountSpan.textContent
         };
 
-        // Send email using email.js [cite: 91]
+        // Send email using email.js
         emailjs.send('service_wnt0rbg', 'template_y12q7sh', templateParams)
             .then(function(response) {
                console.log('SUCCESS!', response.status, response.text);
-               confirmationMessage.style.display = 'block'; // [cite: 92]
+               confirmationMessage.style.display = 'block'; //
                bookingForm.reset();
                cart = [];
                renderCart();
