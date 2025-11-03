@@ -8,9 +8,6 @@ body {
 *, *:before, *:after {
     box-sizing: inherit;
 }
-/* FIX: Hides the "Remove Item" button on page load */
-.service-item .remove-btn {
-    display: none;
 
 /* --- 1. Navbar --- */
 nav {
@@ -117,6 +114,9 @@ nav a {
 .booking-right {
     flex: 1;
 }
+/* FIX: Hides the "Remove Item" button on page load */
+.service-item .remove-btn {
+    display: none;
 .service-item {
     display: flex;
     justify-content: space-between;
@@ -185,6 +185,7 @@ footer {
     min-width: 200px; /* Ensures columns don't get too squished */
     margin: 1rem;
 }
+
 
 }
 /* ================================================= */
